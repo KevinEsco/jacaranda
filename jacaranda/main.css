@@ -1,0 +1,241 @@
+#cart {
+  display: none;
+  min-height: 100%;
+}
+ 
+.col-4{
+  background-image:url('paris.jpg');
+  margin: 25px 0px;
+}
+.wrapper{ 
+  width: 350px; 
+  padding: 20px; 
+  margin: 0 auto;
+}
+.cart-item-image{
+ max-width: 150px;
+}
+.card-header{
+  background-color: #7c4789;
+}
+.card-img-top{
+  max-width: 300px;
+}
+.carousel{
+  padding: 25px 0px;
+}
+.card-title{
+  margin-top:5px;
+}
+
+.ubicacion{
+  background-color: #ccf0c3;
+}
+.color{
+  color: red;
+}
+.logo{
+  width:15%;
+  text-align: center;
+}
+body{
+  width: 100%;
+  background-color:#ccf0c3;
+  font-family: 'Charmonman', cursive;
+}
+.busqueda{
+  line-height: 2;
+  margin-left: 10px;
+  float: right;
+}
+mr-auto {
+  margin-right: 0 !important;
+}
+
+.navbar {
+  background-color: #ffffffca;
+  font-family: 'Charmonman', cursive;
+  width: 110%;
+}
+.nav-link{
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.nologo{
+  margin-top: 1rem
+}
+.navbar-toggleable-md .navbar-collapse {         
+  -webkit-justify-content: flex-end;
+  justify-content: flex-end;  
+}  
+
+/* Productos */
+
+.bloc_left_price {
+  color: #c01508;
+  text-align: center;
+  font-weight: bold;
+  font-size: 150%;
+}
+.category_block li:hover {
+  background-color: #007bff;
+}
+.category_block li:hover a {
+  color: #ffffff;
+}
+.category_block li a {
+  color: #343a40;
+}
+.add_to_cart_block .price {
+  color: #c01508;
+  text-align: center;
+  font-weight: bold;
+  font-size: 200%;
+  margin-bottom: 0;
+}
+.add_to_cart_block .price_discounted {
+  color: #343a40;
+  text-align: center;
+  text-decoration: line-through;
+  font-size: 140%;
+}
+.product_rassurance {
+  padding: 10px;
+  margin-top: 15px;
+  background: #ffffff;
+  border: 1px solid #6c757d;
+  color: #6c757d;
+}
+.product_rassurance .list-inline {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+.product_rassurance .list-inline li:hover {
+  color: #343a40;
+}
+.reviews_product .fa-star {
+  color: gold;
+}
+.pagination {
+  margin-top: 20px;
+}
+footer {
+  background: #7c4789;
+  padding: 40px;
+  width:110%;
+  bottom: 0;
+}
+footer a {
+  color: #f8f9fa!important
+}
+/* Cart */
+.table>tbody>tr>td, .table>tfoot>tr>td{
+  vertical-align: middle;
+}
+@media screen and (max-width: 600px) {
+  table#cart tbody td .form-control{
+  width:20%;
+  display: inline !important;
+}
+.actions .btn{
+  width:36%;
+  margin:1.5em 0;
+}
+
+.actions .btn-info{
+  float:left;
+}
+.actions .btn-danger{
+  float:right;
+}
+
+table#cart thead { display: none; }
+table#cart tbody td { display: block; padding: .6rem; min-width:320px;}
+table#cart tbody tr td:first-child { background: #333; color: #fff; }
+table#cart tbody td:before {
+  content: attr(data-th); font-weight: bold;
+  display: inline-block; width: 8rem;
+}
+
+
+
+table#cart tfoot td{display:block; }
+table#cart tfoot td .btn{display:block;}
+
+}
+/* barra de navegacion */
+#container {
+  
+  text-align: center;
+ 
+}
+#searchform {
+  display: block;
+  font-size: 1em;
+  border-radius: 8em;
+  border: 0.1em solid #dad0be;
+  box-shadow: 0 0 0.3em rgba(60, 60, 60, 0.4);
+  padding: 0.3em;
+  background: white;
+  margin: 18px 15px;
+}
+#s {
+  transition: all 0.2s ease-out;
+  width: 1px;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: transparent;
+  opacity: 0;
+}
+#s:focus {
+  width: 8em;
+  opacity: 1;
+}
+label {
+  padding-left: 1px;
+  display: inline-block;
+  margin-top: 0.3em;
+  color: #0f0f0f;
+  text-shadow: 0 0 0.1em rgba(60, 60, 60, 0.3);
+  position: relative;
+  left: 0.1em;
+  margin-bottom:0;
+}
+.icono{
+  line-height: 4.8;
+  margin: 0 16px;
+}
+.no-records{
+  text-align: center;
+  font-size: 2rem;
+}
+nav{
+  margin-bottom: 25px!important;
+}
+.btn-carro{
+  margin-right: 2%;
+  color: white!important;
+}
+#btnEmpty{
+  color: white;
+}
+.fa-shopping-bag:hover{
+  color: rgb(26, 25, 133)!important;
+  cursor: hand;
+}
+.fa-shopping-bag{
+  color: #007bff!important;
+}
+
+.list-group-item:hover .categoria{
+background-color: #007bff;
+}
+.list-group-item{
+  height: 3rem;
+  padding: 0;
+}
