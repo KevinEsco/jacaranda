@@ -95,7 +95,9 @@ switch($_GET["action"]) {
                         Novedades
                         </a>
                     </li>
-                        <a><i  class="fas fa-shopping-bag b icono" data-toggle="modal" data-target="#exampleModal" ></i> </a>
+                        <a>
+                            <i class="fas fa-shopping-bag b icono" data-toggle="modal" data-target="#exampleModal" ></i> 
+                        </a>
                     </li>
 
                     </li>
@@ -110,11 +112,14 @@ switch($_GET["action"]) {
                             <input type="text" value="" placeholder="search" class="" id="s" />
                         </form>
                     </div>
+
             </ul>
 </nav>
+                    <!-- Modal Cart-->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
         <div class="modal-dialog modal-lg">
+
                 <div class="modal-content">
                 
     <?php
@@ -135,13 +140,13 @@ switch($_GET["action"]) {
                                     <th style="text-align:center;" width="5%">Eliminar</th>
                             </tr>	
     <?php		
-    foreach ($_SESSION["cart_item"] as $item){
+    foreach ($_SESSION["cart_item"] as $item) {
+
         $item_price = $item["quantity"]*$item["price"];
     ?>
                             <tr>
                                     <td>
-                                    <img src="
-<?php echo $item["image"]; ?>" class="cart-item-image" />
+                                    <img src="<?php echo $item["image"]; ?>" class="cart-item-image" />
     <?php echo $item["name"]; ?>
                                     </td>
                                     <td>
@@ -166,10 +171,9 @@ switch($_GET["action"]) {
                                     <td style="text-align:center;">
                                         <a href="index.php?action=remove&code=
     <?php echo $item["code"]; ?>"
-                                        class="btnRemoveAction"
+                                           class="btnRemoveAction"
                                         >
-                                            <i class="fas fa-trash">
-                                            </i>
+                                            <i class="fas fa-trash"></i>
                                         </a>
                                     </td>
                                 
@@ -199,94 +203,152 @@ switch($_GET["action"]) {
                                     </td>
                                             
                                     <td colspan="2" align="right">Total:</td>
-                                    <td align="right"><?php echo $total_quantity; ?> </td>
-                                    <td align="right" colspan="4"><strong><?php echo "$ ".number_format($total_price, 2); ?></strong></td>
-                                    <td></td>
+                                    <td align="right">
+    <?php echo $total_quantity; ?> 
+                                    </td>
+                                    
+                                    <td align="right" colspan="4">
+                                        <strong>
+    <?php echo "$ ".number_format($total_price, 2); ?>
+                                        </strong>
+                                    </td>
+                                    
                             </tr>
                     </tbody>
                 </table>		
-                <?php
-                } else {
-                ?>
-                <div class="no-records">Tu carro esta vacio</div>
+    <?php
+    } else {
+    ?>
+
+                <div class="no-records">
+                    Tu carro esta vacio
+                </div>
                 <style> #btnEmpty{visible:false}</style>
-                <?php 
-                }
-                ?>
-            </div>
-    </div>
+    
+    <?php 
+    }
+    ?>
+                </div> 
+        </div>
 </div>
-      
-    <div class="container" id="general">
-    <div class="container" >
+                    <!--Container General -->
+<div class="container" id="general">
+
+        <div class="container" >
+                    <!--Ubicacion, Categoria -->
+
                 <div class="row ubicacion">
+
                     <div class="col">
+
                         <nav aria-label="breadcrumb">
+
                             <ol class="breadcrumb ubicacion">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item"><a href="category.html">Categoria</a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><?php echo $categoria ?></li>
+
+                                <li class="breadcrumb-item">
+                                    <a href="index.html">
+                                        Home
+                                    </a>
+                                </li>
+
+                                <li class="breadcrumb-item">
+                                    <a href="category.html">
+                                        Categoria
+                                    </a>
+                                </li>
+
+                                <li class="breadcrumb-item active" aria-current="page">
+    <?php echo $categoria ?>    
+                                </li>
+
                             </ol>
+
                         </nav>
+
                     </div>
+
                 </div>
         </div>
+                    <!--Container Central-->
+
                 <div class="row">
-                    <div class="col-12 col-sm-3">
-                        <div class="card bg-light mb-3">
-                            <div class="card-header text-white text-uppercase"><i class="fa fa-list"></i> Categorias</div>
-                            <div class="list-group">
-                                <h3>Tipo de prenda</h3>
+
+                        <!-- Barra Lateral Izq. -->
+
+                        <div class="col-12 col-sm-3">
+
+                            <div class="card bg-light mb-3">
+
+                                <div class="card-header text-white text-uppercase">
+
+                                    <i class="fa fa-list"></i>
+                                    Categorias
                                     
-                                    <?php
+                                </div>
 
-                                    $query = "SELECT DISTINCT(categoria) FROM tblproduct WHERE 1";
-                                    $statement = $connect->prepare($query);
-                                    $statement->execute();
-                                    $result = $statement->fetchAll();
-                                    foreach($result as $row)
-                                    {
-                                    ?>
-                                        <div class="list-group-item checkbox">
-                                            <label><input type="checkbox" class="common_selector categoria" value="<?php echo $row['categoria']; ?>"  > <?php echo $row['categoria']; ?></label>
-                                        </div>
-                                    <?php
-                                    }
+                                <div class="list-group">
 
-                                    ?>
-                                    
-                            </div>
+                                    <h3>Tipo de prenda</h3>
+    <?php
 
-                            <div class="list-group">
-                                    <h3>Talles</h3>
+        $query = "SELECT DISTINCT(categoria) FROM tblproduct WHERE 1";
+        $statement = $connect->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        foreach($result as $row) {
+    ?>
+                                    <div class="list-group-item checkbox">
+
+                                        <label><input type="checkbox" class="common_selector categoria" value="
+    <?php echo $row['categoria']; ?>
+                                            "> 
+    <?php echo $row['categoria']; ?>
+                                        </label>
+
+                                    </div>
+    <?php
+        }
+    ?>
+                                </div>
+
+                                <div class="list-group">
+                                            
+                                            <h3> Talles </h3>
                                             
                                             <div class="list-group-item checkbox">
                                                 <label><input type="checkbox" class="common_selector talle" value="XL" > XL </label>
                                             </div>
+
                                             <div class="list-group-item checkbox">
                                                 <label><input type="checkbox" class="common_selector talle" value="L" > L </label>
                                             </div>
+
                                             <div class="list-group-item checkbox">
                                                 <label><input type="checkbox" class="common_selector talle" value="M" > M </label>
                                             </div>
+
                                             <div class="list-group-item checkbox">
                                                 <label><input type="checkbox" class="common_selector talle" value="S" > S </label>
                                             </div>
                                             
-                                        </div>
-                            
-                            
+                                </div>
+                                
                             </div>
-                
-                        
-                    </div>
-                    <div class="col-md-9">
-                            <br />
-                            <div class="row filter_data">
 
-                            </div>
-                     </div>
-                        <script>
+                        </div>
+
+                        <!-- Div Central productos -->
+
+                        <div class="col-md-9">
+
+                                <br/>
+
+                                <div class="row filter_data">
+
+                                </div>
+                        </div>
+                        
+    <script>
                 $(document).ready(function(){
                     $('.filter_data').html('<div id="loading" style="" ></div>');
                         filter_data();
@@ -325,8 +387,8 @@ switch($_GET["action"]) {
 
                        
                     
-        </div>
-    </div>
+                </div>
+</div>
     
 </body>
 <!-- Footer -->
