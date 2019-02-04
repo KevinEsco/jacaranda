@@ -22,12 +22,13 @@
                     $sql = "INSERT INTO cliente (email, telefono, direccion, barrio, localidad, provincia) VALUES ('$email', '$telefono', '$direccion', '$barrio', '$localidad', '$provincia')";
                     
                        
-                      $resultado =mysqli_query($link, $sql);
+                      $resultado = mysqli_query($link, $sql);
                       // Busca el id_cliente que identifica a esta compra
                       $sql= " ";
+                      $sql= "SELECT max(id_cliente) as max FROM cliente WHERE email='$email'";
                       $result = 0;
                       $resultado = mysqli_query($link, $sql);
-                      $fila = $resultado->fetch_array(MYSQLI_ASSOC);
+                      $fila = $resultado -> fetch_array(MYSQLI_ASSOC);
                         $_SESSION['sessCustomerID'] = $fila['max'];
                         
                         // Crea el pedido para esta compra
@@ -37,22 +38,28 @@
                         foreach ($_SESSION["cart_item"] as $item){
                         // if .$item["talle"] es distinto de L XL M S entonces separar el string en 2 por la coma y hacer un update con la variable del primero y otro update
                         $talle = $item["talle"];
-                        if ($talle <> ("L" && "XL" && "M" && "S")) {
+
+                        if ($talle != ("L" && "XL" && "M" && "S")) {
                            $talles = explode (",",$talle);
 
                            foreach ($talles as $value){
-                                $sql = "UPDATE tblproduct SET ".$value." = ".$value."-".$item["quantity"]." WHERE code = '".$item["code"]."'";
+                                $i = 0;
+                                $sql = "UPDATE tblproduct SET ".$value[$i]." = ".$value[$i]." - ".$item["quantity"]." WHERE code = '".$item["code"]."'";
+                                echo '<script type="text/javascript">alert("'.$sql.'");</script>';
+
                                 mysqli_query($link, $sql);
+                                $i++;
                            }
 
                         }
+
                         else {
-                        $sql = "UPDATE tblproduct SET ".$item["talle"]." = ".$item["talle"]."-".$item["quantity"]." WHERE code = '".$item["code"]."'";
-                        mysqli_query($link, $sql);
+                            $sql = "UPDATE tblproduct SET ".$item["talle"]." = ".$item["talle"]."-".$item["quantity"]." WHERE code = '".$item["code"]."'";
+                            mysqli_query($link, $sql);
                         }
                         }
                         session_destroy();
-                        header ("Location: index.php");
+                        //header ("Location: index.php");
                     // header("Location: OrdenExito.php?id=$orderID");} else{
                        
                       //mysqli_close($link);
