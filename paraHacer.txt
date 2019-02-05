@@ -1,6 +1,5 @@
 -Barra de busqueda
 -Estilo
--Eleccion de un mismo producto en 2 talles distintos
 -Contacto
 -Acerca de nosotros
--
+-Paginacion de productos
