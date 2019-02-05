@@ -39,23 +39,34 @@
                         // if .$item["talle"] es distinto de L XL M S entonces separar el string en 2 por la coma y hacer un update con la variable del primero y otro update
                         $talle = $item["talle"];
 
-                        if ($talle != ("L" && "XL" && "M" && "S")) {
+                        if (($talle != "L") && ($talle != "XL") && ($talle != "M") && ($talle != "S") ) {
+                            
+                            
                            $talles = explode (",",$talle);
-
+                           
                            foreach ($talles as $value){
                                 $i = 0;
-                                $sql = "UPDATE tblproduct SET ".$value[$i]." = ".$value[$i]." - ".$item["quantity"]." WHERE code = '".$item["code"]."'";
-                                echo '<script type="text/javascript">alert("'.$sql.'");</script>';
+                                // en $talle[0] tengo 3-XL, 1-XL entonces tengo que separarlo
+
+                                $sepTalle = explode("-",$value[$i]);
+                                echo ('<script type="text/javascript">alert("'.$sepTalle[0].'");</script>');
+                                echo ('<script type="text/javascript">alert("'.$sepTalle[1].'");</script>');
+                                $sql = "UPDATE tblproduct SET ".$sepTalle[1]." = ".$sepTalle[1]." - ".$sepTalle[0]." WHERE code = '".$item["code"]."'";
+                                echo ('<script type="text/javascript">alert("'.$sql.'");</script>');
 
                                 mysqli_query($link, $sql);
                                 $i++;
+                                unset ($sepTalle);
                            }
+                            
 
                         }
 
                         else {
                             $sql = "UPDATE tblproduct SET ".$item["talle"]." = ".$item["talle"]."-".$item["quantity"]." WHERE code = '".$item["code"]."'";
                             mysqli_query($link, $sql);
+                            echo ('<script type="text/javascript">alert("'.$sql.'");</script>');
+                            
                         }
                         }
                         session_destroy();

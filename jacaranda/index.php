@@ -9,18 +9,25 @@ switch($_GET["action"]) {
 	case "add":
                 if(!empty($_POST["quantity"])) {
                     $productByCode = $db_handle->runQuery("SELECT * FROM tblproduct WHERE code='" . $_GET["code"] . "'");
-                    $itemArray = array($productByCode[0]["code"]=>array('name'=>$productByCode[0]["name"], 'code'=>$productByCode[0]["code"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["price"], 'image'=>$productByCode[0]["image"], 'talle'=>$_POST["talle"]));
+                    $itemArray = array($productByCode[0]["code"]=>array('name'=>$productByCode[0]["name"], 'code'=>$productByCode[0]["code"], 'quantity'=>$_POST["quantity"], 'price'=>$productByCode[0]["price"], 'image'=>$productByCode[0]["image"], 'talle'=>($_POST["quantity"]."-".$_POST["talle"])));
                     //si el carro no esta vacio
                             if(!empty($_SESSION["cart_item"])) {
-                                
+                                // si hay un articulo con el mismo codigo en el carro
                                 if(in_array($productByCode[0]["code"],array_keys($_SESSION["cart_item"]))) {
+                                        // por cada producto distnto en el carro
                                         foreach($_SESSION["cart_item"] as $k => $v) {
+                                                // si el producto a insertar es igual al producto evaluado
                                                 if($productByCode[0]["code"] == $k) {
+                                                    // si la cantidad es nula
                                                     if(empty($_SESSION["cart_item"][$k]["quantity"])) {
+
                                                         $_SESSION["cart_item"][$k]["quantity"] = 0;
                                                     }
+                                                    // si hay mas de 0 items con el mismo codigo 
+                                                        //agrega a la suma total del carro 
                                                     $_SESSION["cart_item"][$k]["quantity"] += $_POST["quantity"];
-                                                    $_SESSION["cart_item"][$k]["talle"] .= ','.$_POST["talle"];
+                                                        //agrega al talle de ese codprod el post 
+                                                    $_SESSION["cart_item"][$k]["talle"] .= ','.$_POST["quantity"]."-".$_POST["talle"];
                                                 }
                                         }
                                 }   else {
@@ -166,11 +173,10 @@ switch($_GET["action"]) {
                                     </td>
                                     
                                     <td style="text-align:right;">
-    <?php echo $item["talle"]; ?>
+    <?php echo $item["talle"];   ?>
                                     </td>
                                     <td style="text-align:center;">
-                                        <a href="index.php?action=remove&code=
-    <?php echo $item["code"]; ?>"
+                                        <a href="index.php?action=remove&code=<?php echo $item["code"]; ?>"
                                            class="btnRemoveAction"
                                         >
                                             <i class="fas fa-trash"></i>
