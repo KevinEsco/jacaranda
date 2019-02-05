@@ -305,10 +305,8 @@ switch($_GET["action"]) {
     ?>
                                     <div class="list-group-item checkbox">
 
-                                        <label><input type="checkbox" class="common_selector categoria" value="
-    <?php echo $row['categoria']; ?>
-                                            "> 
-    <?php echo $row['categoria']; ?>
+                                        <label><input type="checkbox" class="common_selector categoria" value="<?php echo $row['categoria']; ?>"> 
+                                            <?php echo $row['categoria']; ?>
                                         </label>
 
                                     </div>

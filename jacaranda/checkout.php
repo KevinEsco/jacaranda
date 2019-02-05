@@ -32,8 +32,8 @@
                         $_SESSION['sessCustomerID'] = $fila['max'];
                         
                         // Crea el pedido para esta compra
-                        $sql = "INSERT INTO pedido (id_usuario, total, creado, modificado) VALUES ('".$_SESSION["sessCustomerID"]."', '".$_SESSION["totalprice"]."', '".date("Y-m-d H:i:s")."', '".date("Y-m-d H:i:s")."')";
-                        $insertOrder = mysqli_query($link, $sql);
+                        //$sql = "INSERT INTO pedido (id_usuario, total, creado, modificado) VALUES ('".$_SESSION["sessCustomerID"]."', '".$_SESSION["totalprice"]."', '".date("Y-m-d H:i:s")."', '".date("Y-m-d H:i:s")."')";
+                       // $insertOrder = mysqli_query($link, $sql);
                         //descuenta los items del stock
                         foreach ($_SESSION["cart_item"] as $item){
                         // if .$item["talle"] es distinto de L XL M S entonces separar el string en 2 por la coma y hacer un update con la variable del primero y otro update
@@ -45,18 +45,16 @@
                            $talles = explode (",",$talle);
                            
                            foreach ($talles as $value){
-                                $i = 0;
+                                
                                 // en $talle[0] tengo 3-XL, 1-XL entonces tengo que separarlo
-
-                                $sepTalle = explode("-",$value[$i]);
-                                echo ('<script type="text/javascript">alert("'.$sepTalle[0].'");</script>');
-                                echo ('<script type="text/javascript">alert("'.$sepTalle[1].'");</script>');
+                                
+                                $sepTalle = explode("-",$value);
+                               
                                 $sql = "UPDATE tblproduct SET ".$sepTalle[1]." = ".$sepTalle[1]." - ".$sepTalle[0]." WHERE code = '".$item["code"]."'";
-                                echo ('<script type="text/javascript">alert("'.$sql.'");</script>');
+                               // echo ('<script type="text/javascript">alert("'.$sql.'");</script>');
 
                                 mysqli_query($link, $sql);
-                                $i++;
-                                unset ($sepTalle);
+                                
                            }
                             
 
@@ -70,7 +68,7 @@
                         }
                         }
                         session_destroy();
-                        //header ("Location: index.php");
+                        header ("Location: index.php");
                     // header("Location: OrdenExito.php?id=$orderID");} else{
                        
                       //mysqli_close($link);
@@ -100,7 +98,7 @@
 <nav class="navbar  navbar-expand-lg navbar-light bg-light, nav justify-content-center">
                         <ul class="nav justify-content-center">
                               <li class="nav-item">
-                                <a  href="#"><img class="logo"src="logo.jpg" alt=""></a>
+                                <a  href="index.php"><img class="logo"src="logo.jpg" alt=""></a>
                               </li>
                               
                              
