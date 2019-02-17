@@ -243,37 +243,7 @@ switch($_GET["action"]) {
         <div class="container" >
                     <!--Ubicacion, Categoria -->
 
-                <div class="row ubicacion">
-
-                    <div class="col">
-
-                        <nav aria-label="breadcrumb">
-
-                            <ol class="breadcrumb ubicacion">
-
-                                <li class="breadcrumb-item">
-                                    <a href="index.html">
-                                        Home
-                                    </a>
-                                </li>
-
-                                <li class="breadcrumb-item">
-                                    <a href="category.html">
-                                        Categoria
-                                    </a>
-                                </li>
-
-                                <li class="breadcrumb-item active" aria-current="page">
-    <?php echo $categoria ?>    
-                                </li>
-
-                            </ol>
-
-                        </nav>
-
-                    </div>
-
-                </div>
+                
         </div>
                     <!--Container Central-->
 

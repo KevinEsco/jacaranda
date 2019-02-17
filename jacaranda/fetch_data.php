@@ -30,7 +30,37 @@ if(isset($_POST["action"]))
             $statement->execute();
             $result = $statement->fetchAll();
             $total_row = $statement->rowCount();
-            $output = '';
+            $output = '<div class="row ubicacion">
+
+            <div class="col">
+
+                <nav aria-label="breadcrumb">
+
+                    <ol class="breadcrumb ubicacion">
+
+                        <li class="breadcrumb-item">
+                            <a href="index.html">
+                                Home
+                            </a>
+                        </li>
+
+                        <li class="breadcrumb-item">
+                            <a href="category.html">
+                                Categoria
+                            </a>
+                        </li>
+
+                        <li class="breadcrumb-item active" aria-current="page">
+                                '.$categoria.'
+                        </li>
+
+                    </ol>
+
+                </nav>
+
+            </div>
+
+</div>';
             if($total_row > 0)
             {
                     foreach($result as $row)
@@ -58,6 +88,8 @@ if(isset($_POST["action"]))
                                             
                                             
                                         $output .= '
+                                        
+
                                         <div class="col-12 col-md-6 col-lg-4">
                                                 
                                             <div class="card">

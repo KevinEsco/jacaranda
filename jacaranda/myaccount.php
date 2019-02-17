@@ -1,6 +1,21 @@
 <?php
 // Initialize the session
 session_start();
+require_once("dbcontroller.php");
+include("database_connection.php");
+$db_handle = new DBController();
+if ($_SESSION["loggedin"]) {
+// selecciona el email del usuario 
+$sql = "SELECT email FROM users WHERE username = '" .$_SESSION['username']."'";
+$resultado = '';
+$resultado= mysqli_query($db_handle->connectDB(), $sql);
+$_SESSION['email'] =  mysqli_fetch_array($resultado);
+// selecciona los pedidos   
+$sql = "SELECT email FROM users WHERE username = '" .$_SESSION['username']."'";
+$resultado = '';
+$resultado= mysqli_query($db_handle->connectDB(), $sql);
+$_SESSION['email'] =  mysqli_fetch_array($resultado);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +33,7 @@ session_start();
       <title> Mi cuenta </title>
   </head>
 <body>
+
 <!--NavBar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light, nav justify-content-center">
     <ul class="nav justify-content-center">
@@ -183,7 +199,7 @@ session_start();
 </div>
     <div class="container">
    <h2> Informacion de mi cuenta</h2><br>
-   Mail: <?php echo htmlspecialchars($_SESSION["email"]); ?>
+     Email: <?php echo ($_SESSION["email"][0]); ?>
    <p>
         <a href="reset-password.php" class="btn btn-warning">Reestablecer contraseña</a>
         <a href="logout.php" class="btn btn-danger"> Cerrar sesion </a>
