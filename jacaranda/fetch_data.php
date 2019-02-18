@@ -11,11 +11,16 @@ if(isset($_POST["action"]))
             ";
             if(isset($_POST["categoria"]))
             {
+                $categoria_mostrar = implode(" y ", $_POST["categoria"]);
                 $categoria_filter = implode("','", $_POST["categoria"]);
                 $query .= "
                 AND categoria IN('".$categoria_filter."')
                 ";
                 
+            }
+            else {
+                $categoria_mostrar = "";
+
             }
             if(isset($_POST["talle"]))
             {
@@ -32,7 +37,7 @@ if(isset($_POST["action"]))
             $total_row = $statement->rowCount();
             $output = '<div class="row ubicacion">
 
-            <div class="col">
+            
 
                 <nav aria-label="breadcrumb">
 
@@ -51,14 +56,14 @@ if(isset($_POST["action"]))
                         </li>
 
                         <li class="breadcrumb-item active" aria-current="page">
-                                '.$categoria.'
+                                '.$categoria_mostrar.'
                         </li>
 
                     </ol>
 
                 </nav>
 
-            </div>
+            
 
 </div>';
             if($total_row > 0)
@@ -92,7 +97,7 @@ if(isset($_POST["action"]))
 
                                         <div class="col-12 col-md-6 col-lg-4">
                                                 
-                                            <div class="card">
+                                            <div class="card producto">
                                                 
                                                         <form method="post" action="index.php?action=add&code='. $row['code'] .'">
                                                             <img class="card-img-top" src="'. $row['image'] .'" alt="Card image cap">

@@ -20,6 +20,7 @@
 }
 .card-img-top{
   max-width: 300px;
+  max-height: 350px;
 }
 .carousel{
   padding: 25px 0px;
@@ -30,6 +31,8 @@
 
 .ubicacion{
   background-color: #ccf0c3;
+  width: 1000px;
+  height: 60px;
 }
 .color{
   color: red;
@@ -238,4 +241,24 @@ background-color: #007bff;
 .list-group-item{
   height: 3rem;
   padding: 0;
+}
+.primerafoto{
+  width: 1200px;
+  height: 600px;
+}
+.barraLateral{
+  margin-top:7.5%;
+}
+.ubicacion{
+  padding-top:0;
+  padding-left:17px;
+}
+h3{
+  padding: 15px;
+}
+.filtrosIzquierda{
+  padding:10px;
+}
+.producto{
+  margin: 10px;
 }

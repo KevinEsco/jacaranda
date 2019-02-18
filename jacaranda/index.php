@@ -251,7 +251,7 @@ switch($_GET["action"]) {
 
                         <!-- Barra Lateral Izq. -->
 
-                        <div class="col-12 col-sm-3">
+                        <div class="col-12 col-sm-3 barraLateral">
 
                             <div class="card bg-light mb-3">
 
@@ -275,7 +275,7 @@ switch($_GET["action"]) {
     ?>
                                     <div class="list-group-item checkbox">
 
-                                        <label><input type="checkbox" class="common_selector categoria" value="<?php echo $row['categoria']; ?>"> 
+                                        <label class="filtrosIzquierda"><input type="checkbox" class="common_selector categoria" value="<?php echo $row['categoria']; ?>"> 
                                             <?php echo $row['categoria']; ?>
                                         </label>
 
@@ -290,19 +290,19 @@ switch($_GET["action"]) {
                                             <h3> Talles </h3>
                                             
                                             <div class="list-group-item checkbox">
-                                                <label><input type="checkbox" class="common_selector talle" value="XL" > XL </label>
+                                                <label class="filtrosIzquierda"><input type="checkbox" class="common_selector talle" value="XL" > XL </label>
                                             </div>
 
                                             <div class="list-group-item checkbox">
-                                                <label><input type="checkbox" class="common_selector talle" value="L" > L </label>
+                                                <label class="filtrosIzquierda"><input type="checkbox" class="common_selector talle" value="L" > L </label>
                                             </div>
 
                                             <div class="list-group-item checkbox">
-                                                <label><input type="checkbox" class="common_selector talle" value="M" > M </label>
+                                                <label class="filtrosIzquierda"><input type="checkbox" class="common_selector talle" value="M" > M </label>
                                             </div>
 
                                             <div class="list-group-item checkbox">
-                                                <label><input type="checkbox" class="common_selector talle" value="S" > S </label>
+                                                <label class="filtrosIzquierda"><input type="checkbox" class="common_selector talle" value="S" > S </label>
                                             </div>
                                             
                                 </div>
