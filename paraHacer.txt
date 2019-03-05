@@ -1,5 +1,7 @@
 -Barra de busqueda
 -Estilo
--Contacto
 -Acerca de nosotros
--Paginacion de productos
+-Agregar los enlaces a redes
+-Paginas de productos
+
+
