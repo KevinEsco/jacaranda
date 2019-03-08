@@ -6,12 +6,29 @@ include('database_connection.php');
 
 if(isset($_POST["action"]))
 {
+           
+        
+             session_start();
+             $PrendasPorPagina = 5;
             $query = "
-            SELECT * FROM tblproduct WHERE 1
+            SELECT * FROM tblproduct WHERE 1 
             ";
+            $page_1 = $_SESSION["page_1"];
+            
+            // if($_SESSION["page_1"] > 1){
+
+            //     if(isset($_POST["categoria"]))
+            //     {  
+
+            //     }    
+
+            // }        
+
             if(isset($_POST["categoria"]))
-            {
-                $categoria_mostrar = implode(" y ", $_POST["categoria"]);
+            {   
+                //si es distinto que el categoria anterior entonces borrar page1 sino dejarlo como esta
+            
+                $categoria_mostrar = implode(" , ", $_POST["categoria"]);
                 $categoria_filter = implode("','", $_POST["categoria"]);
                 $query .= "
                 AND categoria IN('".$categoria_filter."')
@@ -29,12 +46,61 @@ if(isset($_POST["action"]))
                 AND ".$talle_filter." > 0
                 ";
             }
+            if (isset($_SESSION["queryAnterior"])){
+                
+                //si eligio ver la segunda pagina o estaba en la segunda pagina y cambio los filtros
+                if ($page_1 > 1) {
+                    //si no eligio cambiar el filtro osea si filtro anterior es igual a filtro actual
+                    if (($_SESSION["filtroAnterior"]) == ($categoria_mostrar)){
+                        // mostrar los filtros que estaba usando
+                        
+                        $query = $_SESSION["queryAnterior"];
+                        
+                    }
+                    //si eligio filtros nuevos resetear la pagina e ir a la primera
+                    else{
+                        $page_1 = 0;
+                        $consultaNueva = true;
+                    }
+                    
+                }
+                // si eligio la primera pagina y NO cambio filtros usar query anterior
+                if (($page_1 == 0)  && (($_SESSION["filtroAnterior"]) == ($categoria_mostrar))) {
+                    $query = $_SESSION["queryAnterior"];
+
+                }
+
+
+                
+                
+            }
+            $_SESSION["queryAnterior"] = $query;
+            $_SESSION["filtroAnterior"] = $categoria_mostrar;
+            $statement = $connect->prepare($query);
+            $statement->execute();
+            $result = $statement->fetchAll();
+            $numPrendas = $statement->rowCount();
+            $numPaginas = ceil($numPrendas / $PrendasPorPagina); 
+            
+            if ($numPaginas > 0) {
+                
+                $_SESSION["numPaginas"] = $numPaginas;
+            }
+            if(isset($query)){
+                $query .="
+                LIMIT $page_1, $PrendasPorPagina 
+                ";
+            }
 
 
             $statement = $connect->prepare($query);
             $statement->execute();
             $result = $statement->fetchAll();
             $total_row = $statement->rowCount();
+            
+            
+            
+            
             $output = '<div class="row ubicacion">
 
             
@@ -142,12 +208,31 @@ if(isset($_POST["action"]))
                                         ';
 
                                 }
-             }
+                                }
             else
             {
-            $output = '<h3>No Data Found</h3>';
+            $output = '<h3>No tenemos prendas de este tipo :(</h3>';
             }
+            
             echo $output;
+            ?>
+            
+            <nav class="navbar  navbar-expand-lg, nav justify-content-center" aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                <?php
+                
+                if (isset($_SESSION["numPaginas"])) {
+                    echo("<li class='page-item'><a class='page-link' href='#'>Ant.</a></li>");
+                        for ($i = 1; $i <= $_SESSION["numPaginas"]; $i++){
+                            echo("<li class='page-item'><a class='page-link' href='index.php?page={$i}'>{$i}</a></li>");
+                        }
+                    echo("<li class='page-item'><a class='page-link' href='#'>Sig.</a></li>");  
+                }
+                ?>
+                    
+                </ul>
+            </nav>
+            <?php
 }
 
 ?>

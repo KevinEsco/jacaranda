@@ -1,9 +1,34 @@
 <?php
+
 session_start();
 require_once("dbcontroller.php");
+
 include("database_connection.php");
 $db_handle = new DBController();
 $categoria = "";
+
+if(isset($_GET['page'])){
+    $page = $_GET['page'];
+}
+else{
+    $page = "";
+}
+if($page == "" || $page == 1){
+    $_SESSION["page_1"] = 0;
+} 
+else{
+    $_SESSION["page_1"] = ($page * 2) - 2 ;
+}
+
+if(isset($_POST['Contacto'])){
+    $email = $_POST['email'];
+    $asunto = WordWrap($_POST['asunto'], 70);
+    $mensaje = $_POST['mensaje'];
+    $destino = "kily_24@live.com";
+
+    mail($destino, $asunto, $mensaje, $email);
+}
+
 if(!empty($_GET["action"])) {
 switch($_GET["action"]) {
 	case "add":
@@ -86,12 +111,12 @@ switch($_GET["action"]) {
                     </li>
                     
                     <li class="nav-item nologo">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="acercaDeNosotros.php">
                             Conocenos
                         </a>
                     </li>
 
-                    <li class="nav-item nologo">
+                    <li class="nav-item nologo" data-toggle="modal" data-target="#modalContacto">
                         <a class="nav-link " href="#">
                             Contacto
                         </a>
@@ -237,6 +262,45 @@ switch($_GET["action"]) {
                 </div> 
         </div>
 </div>
+
+                    <!-- Modal Contacto-->
+<div class="modal fade" id="modalContacto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content modalContacto">
+           <h2 class="contactoTitulo"> Gracias por ponerte en contacto con nosotros!!</h2>
+        <form action="" method="post" role="form">
+
+            <div class="form-group ">
+                <h3>Email</h3>
+                <input type="email" name="email" placeholder="Dejanos un correo para ponernos en contacto" class="form-control" required>
+                <span class="help-block"></span>
+            </div>    
+
+            <div class="form-group">
+                <h3>Asunto</h3>
+                <input type="text" name="asunto" id="asunto"  class="form-control" required>
+                <span class="help-block"></span>
+            </div>
+
+            <div class="form-group">
+                <h3>Mensaje</h3>
+                <textarea class="formMensajeContacto" name="mensaje" rows="3" placeholder="En que te podemos ayudar?" cols="91" required></textarea>
+                
+                <span class="help-block "></span>
+            </div>
+                
+                <input type="submit" class="btn btn-primary" value="Contacto" name="Contacto">
+
+        </form>
+            
+        </div> 
+
+    </div>
+
+</div>
+
                     <!--Container General -->
 <div class="container" id="general">
 
@@ -275,13 +339,22 @@ switch($_GET["action"]) {
     ?>
                                     <div class="list-group-item checkbox">
 
-                                        <label class="filtrosIzquierda"><input type="checkbox" class="common_selector categoria" value="<?php echo $row['categoria']; ?>"> 
-                                            <?php echo $row['categoria']; ?>
+                                        <label class="filtrosIzquierda">
+                                            <input type="checkbox" class="common_selector categoria" value="<?php echo $row['categoria']; ?>" <?php 
+                                            if (isset($_SESSION["filtroAnterior"])){
+                                                //si la consulta anterior se uso filtro entonces clickearlo
+                                                if( strpos( $_SESSION["filtroAnterior"], $row['categoria'] ) !== false ){
+                                                    echo("checked");
+                                                }
+                                            }
+                                            ?> > 
+                                                <?php echo $row['categoria']; ?>
                                         </label>
 
                                     </div>
     <?php
         }
+        
     ?>
                                 </div>
 
@@ -363,47 +436,42 @@ switch($_GET["action"]) {
                     
                 </div>
 </div>
-    
+
 </body>
+
 <!-- Footer -->
 <footer class="page-footer font-small special-color-dark pt-4" id="footer">
 
   <!-- Footer Elements -->
                     <div class="container">
+                      <div class="divNewsletter">
+                          <form action="">
+                              <h3 class="tituloNewsletter">Suscribite a nuestro newsletter para no perderte las novedades y recibir descuentos especiales TOTALMENTE GRATIS!!</h3>
+                              <input type="text" class="inputNewsletter form-control" placeholder="e-mail">
+                              <input type="submit" class="btn btn-primary" value="Ingresar">
+
+                          </form>
+                      </div>
+
 
                       <!-- Social buttons -->
                       <ul class="list-unstyled list-inline text-center">
                           <li class="list-inline-item">
-                            <a class="btn-floating btn-fb mx-1">
+                            <a href="https://www.facebook.com/Jacarand%C3%A1-Tienda-de-sue%C3%B1os-382284355536897/" class="btn-floating btn-fb mx-1">
                               <i class="fab fa-facebook-square"> </i>
                             </a>
                           </li>
                           <li class="list-inline-item">
-                            <a class="btn-floating btn-tw mx-1">
-                              <i class="fab fa-twitter"> </i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a class="btn-floating btn-gplus mx-1">
-                              <i class="fab fa-google-plus"> </i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a class="btn-floating btn-li mx-1">
+                            <a href="https://www.instagram.com/jacaranda_tienda/"class="btn-floating btn-li mx-1">
                               <i class="fab fa-instagram"> </i>
                             </a>
                           </li>
                       </ul>
+
                       
 
                     </div>
                     
-
-                    <!-- Copyright -->
-                    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-                      <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
-                    </div>
-                    <!-- Copyright -->
 
 </footer>
   <!-- Footer -->

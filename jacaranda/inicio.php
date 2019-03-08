@@ -239,13 +239,13 @@ switch($_GET["action"]) {
                                   </ol>
                                   <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                      <img class="d-block primerafoto" src="images/24.jpg" alt="First slide">
+                                      <img class="d-block primerafoto" src="images/slide/1.jpg" alt="First slide">
                                     </div>
                                     <div class="carousel-item">
-                                      <img class="d-block w-100" src="images/slide1.jpg" alt="Second slide">
+                                      <img class="d-block w-100" src="images/slide/2.jpg" alt="Second slide">
                                     </div>
                                     <div class="carousel-item">
-                                      <img class="d-block w-100" src="images/slide1.jpg" alt="Third slide">
+                                      <img class="d-block w-100" src="images/slide/3.jpg" alt="Third slide">
                                     </div>
                                   </div>
                                   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -261,46 +261,20 @@ switch($_GET["action"]) {
   </div>
   <!--Cuadrados promociones-->
   <div class="row justify-content-around">
-                          <div class="col-4 paris">
-
+                          <div class="col-4 secciones remeras">
+                             <H3 class="titulosSecciones">Remeras</H3> 
                           </div>
-                          <div class="col-4">
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns <br>
-                            One of two columns <br>
-                            One of two columns <br>
-                            One of two columns <br>
-                            One of two columns <br>
-                            One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>
+                          <div class="col-4 secciones abrigos">
+                               <H3 class="titulosSecciones"> Abrigos</H3>
                           </div>
 
                       </div>
-                        <div class="row justify-content-around">
-                          <div class="col-4 paris">
-
+                        <div class="row justify-content-around ">
+                          <div class="col-4 secciones vestidos">
+                            <H3 class="titulosSecciones">Vestidos</H3>
                           </div>
-                          <div class="col-4">
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns
-                            One of two columns <br>
-                            One of two columns <br>
-                            One of two columns <br>
-                            One of two columns <br>
-                            One of two columns <br>
-                            One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>One of two columns <br>
+                          <div class="col-4 secciones pantalones">
+                           <H3 class="titulosSecciones">Pantalones</H3>
                           </div>
 
                       </div>

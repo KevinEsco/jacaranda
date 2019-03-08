@@ -2,10 +2,26 @@
   display: none;
   min-height: 100%;
 }
- 
-.col-4{
-  background-image:url('paris.jpg');
+.titulosSecciones{
+  padding: 2% 0 2% 2%; 
+  background: black;
+  color:  white;
+  margin: 40% 0 2% 0;
+}
+.secciones{
   margin: 25px 0px;
+}
+.remeras{
+  background-image:url('images/secciones/remeras.jpg');
+}
+.pantalones{
+  background-image:url('images/secciones/remeras.jpg');
+}
+.vestidos{
+  background-image:url('images/secciones/vestidos.jpg');
+}
+.abrigos{
+  background-image:url('images/secciones/abrigos.jpg');
 }
 .wrapper{ 
   width: 350px; 
@@ -261,4 +277,24 @@ h3{
 }
 .producto{
   margin: 10px;
+}
+.modalContacto{
+  padding: 100px;
+}
+.formMensajeContacto{
+  border-radius: 5px;
+  border-color: #ced4da ;
+}
+.contactoTitulo{
+  padding: 30px;
+}
+.tituloNewsletter{
+  color: white;
+  
+}
+.divNewsletter{
+  background-color: green;
+}
+.inputNewsletter{
+  width: 60%;
 }
