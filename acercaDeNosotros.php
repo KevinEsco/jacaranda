@@ -240,4 +240,55 @@ switch($_GET["action"]) {
 
 
 </body>
+
+<!-- Footer -->
+<footer class="page-footer font-small special-color-dark pt-4" id="footer">
+
+  <!-- Footer Elements -->
+                    <div class="container">
+                      <div class="divNewsletter">
+                          <form action="">
+                              <h3 class="tituloNewsletter">Suscribite a nuestro newsletter para no perderte las novedades y recibir descuentos especiales TOTALMENTE GRATIS!!</h3>
+                              <input type="text" class="inputNewsletter form-control" placeholder="e-mail">
+                              <input type="submit" class="btn btn-primary" value="Ingresar">
+
+                          </form>
+                      </div>
+
+
+                      <!-- Social buttons -->
+                      <ul class="list-unstyled list-inline text-center">
+                          <li class="list-inline-item">
+                            <a class="btn-floating btn-fb mx-1">
+                              <i class="fab fa-facebook-square"> </i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a class="btn-floating btn-tw mx-1">
+                              <i class="fab fa-twitter"> </i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a class="btn-floating btn-gplus mx-1">
+                              <i class="fab fa-google-plus"> </i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a class="btn-floating btn-li mx-1">
+                              <i class="fab fa-instagram"> </i>
+                            </a>
+                          </li>
+                      </ul>
+
+                      
+
+                    </div>
+                    
+
+</footer>
+  <!-- Footer -->
+  <!-- Footer -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </html>
