@@ -261,44 +261,34 @@
   </div>
 
         <!-- Footer -->
-<footer class="page-footer font-small special-color-dark pt-4">
+        <footer class="page-footer font-small special-color-dark pt-4" id="footer">
 
-  <!-- Footer Elements -->
-                    <div class="container">
+<!-- Footer Elements -->
+                  <div class="container">
+                   
+                    <!-- Social buttons -->
+                    <div class="encontranosFooter">
+                            <h3>Seguinos en nuestras redes sociales:</h3>
+                        </div>  
+                    <ul class="list-unstyled list-inline text-center">
+                        <li class="list-inline-item">
+                          <a href="https://www.facebook.com/Jacarand%C3%A1-Tienda-de-sue%C3%B1os-382284355536897/"  target="_blank" class="btn-floating btn-fb mx-2">
+                            <i class="fab fa-facebook-square"> </i>
+                          </a>
+                        </li>
+                        
+                        <li class="list-inline-item">
+                       
+                          <a href="https://www.instagram.com/jacaranda_tienda/"class="btn-floating btn-li mx-2"  target="_blank">
+                            <i class="fab fa-instagram"> </i>
+                          </a>
+                        </li>
+                    </ul>
 
-                      <!-- Social buttons -->
-                      <ul class="list-unstyled list-inline text-center">
-                          <li class="list-inline-item">
-                            <a class="btn-floating btn-fb mx-1">
-                              <i class="fab fa-facebook-square"> </i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a class="btn-floating btn-tw mx-1">
-                              <i class="fab fa-twitter"> </i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a class="btn-floating btn-gplus mx-1">
-                              <i class="fab fa-google-plus"> </i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a class="btn-floating btn-li mx-1">
-                              <i class="fab fa-instagram"> </i>
-                            </a>
-                          </li>
-                      </ul>
-                      
-
-                    </div>
                     
 
-                    <!-- Copyright -->
-                    <div class="footer-copyright text-center py-3">© 2018 Copyright:
-                      <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
-                    </div>
-                    <!-- Copyright -->
+                  </div>
+                  
 
 </footer>
 

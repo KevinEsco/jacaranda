@@ -281,48 +281,36 @@ switch($_GET["action"]) {
 
 
     
-  <!-- Footer -->
-  <footer class="page-footer font-small special-color-dark pt-4">
+                      <footer class="page-footer font-small special-color-dark pt-4" id="footer">
 
-    <!-- Footer Elements -->
-                      <div class="container">
-
-                        <!-- Social buttons -->
-                        <ul class="list-unstyled list-inline text-center">
-                          <li class="list-inline-item">
-                            <a class="btn-floating btn-fb mx-1">
-                              <i class="fab fa-facebook-square"> </i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a class="btn-floating btn-tw mx-1">
-                              <i class="fab fa-twitter"> </i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a class="btn-floating btn-gplus mx-1">
-                              <i class="fab fa-google-plus"> </i>
-                            </a>
-                          </li>
-                          <li class="list-inline-item">
-                            <a class="btn-floating btn-li mx-1">
-                              <i class="fab fa-instagram"> </i>
-                            </a>
-                          </li>
-                          
-                        </ul>
+<!-- Footer Elements -->
+                  <div class="container">
+                   
+                    <!-- Social buttons -->
+                    <div class="encontranosFooter">
+                            <h3>Seguinos en nuestras redes sociales:</h3>
+                        </div>  
+                    <ul class="list-unstyled list-inline text-center">
+                        <li class="list-inline-item">
+                          <a href="https://www.facebook.com/Jacarand%C3%A1-Tienda-de-sue%C3%B1os-382284355536897/"  target="_blank" class="btn-floating btn-fb mx-2">
+                            <i class="fab fa-facebook-square"> </i>
+                          </a>
+                        </li>
                         
+                        <li class="list-inline-item">
+                       
+                          <a href="https://www.instagram.com/jacaranda_tienda/"class="btn-floating btn-li mx-2"  target="_blank">
+                            <i class="fab fa-instagram"> </i>
+                          </a>
+                        </li>
+                    </ul>
 
-                      </div>
-                      
+                    
 
-                      <!-- Copyright -->
-                      <div class="footer-copyright text-center py-3">© 2018 Copyright:
-                        <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
-                      </div>
-                      <!-- Copyright -->
+                  </div>
+                  
 
-  </footer>
+</footer>
     <!-- Footer -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
