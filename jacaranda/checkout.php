@@ -29,11 +29,13 @@
                       $result = 0;
                       $resultado = mysqli_query($link, $sql);
                       $fila = $resultado -> fetch_array(MYSQLI_ASSOC);
+                      //id cliente
                         $_SESSION['sessCustomerID'] = $fila['max'];
                         
                         // Crea el pedido para esta compra
-                        //$sql = "INSERT INTO pedido (id_usuario, total, creado, modificado) VALUES ('".$_SESSION["sessCustomerID"]."', '".$_SESSION["totalprice"]."', '".date("Y-m-d H:i:s")."', '".date("Y-m-d H:i:s")."')";
-                       // $insertOrder = mysqli_query($link, $sql);
+                        $sql = "INSERT INTO pedido (id_cliente, total, creado, modificado) VALUES ('".$_SESSION["sessCustomerID"]."', '".$_SESSION["totalprice"]."', '".date("Y-m-d H:i:s")."', '".date("Y-m-d H:i:s")."')";
+                        $insertOrder = mysqli_query($link, $sql);
+                        $id_pedido = mysqli_insert_id($link);
                         //descuenta los items del stock
                         foreach ($_SESSION["cart_item"] as $item){
                         // if .$item["talle"] es distinto de L XL M S entonces separar el string en 2 por la coma y hacer un update con la variable del primero y otro update
@@ -51,9 +53,14 @@
                                 $sepTalle = explode("-",$value);
                                
                                 $sql = "UPDATE tblproduct SET ".$sepTalle[1]." = ".$sepTalle[1]." - ".$sepTalle[0]." WHERE code = '".$item["code"]."'";
-                               // echo ('<script type="text/javascript">alert("'.$sql.'");</script>');
+                                echo ('<script type="text/javascript">alert("'.$sql.'");</script>');
 
                                 mysqli_query($link, $sql);
+                                
+
+                                $sql = "INSERT INTO productoxpedido (id_pedido, id_producto, talle, cantidad) VALUES ($id_pedido, '".$item["code"]."', '".$sepTalle[1]."' , $sepTalle[0] )";
+                                $insertOrder = mysqli_query($link, $sql); 
+                                
                                 
                            }
                             

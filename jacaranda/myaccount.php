@@ -3,6 +3,7 @@
 session_start();
 require_once("dbcontroller.php");
 include("database_connection.php");
+include("config.php");
 $db_handle = new DBController();
 if ($_SESSION["loggedin"]) {
 // selecciona el email del usuario 
@@ -11,10 +12,10 @@ $resultado = '';
 $resultado= mysqli_query($db_handle->connectDB(), $sql);
 $_SESSION['email'] =  mysqli_fetch_array($resultado);
 // selecciona los pedidos   
-$sql = "SELECT email FROM users WHERE username = '" .$_SESSION['username']."'";
+$sql = "SELECT id_usuario FROM users WHERE username = '" .$_SESSION['username']."'";
 $resultado = '';
 $resultado= mysqli_query($db_handle->connectDB(), $sql);
-$_SESSION['email'] =  mysqli_fetch_array($resultado);
+$_SESSION['id_usuario'] =  mysqli_fetch_array($resultado);
 }
 ?>
 <!DOCTYPE html>
@@ -204,6 +205,25 @@ $_SESSION['email'] =  mysqli_fetch_array($resultado);
         <a href="reset-password.php" class="btn btn-warning">Reestablecer contraseña</a>
         <a href="logout.php" class="btn btn-danger"> Cerrar sesion </a>
     </p>
+    <div>
+      <h2>Informacion de Pedidos</h2>
+      <?php 
+        $sql= "SELECT p.total, pp.id_producto, tp.name, pp.cantidad
+        FROM `cliente` as c
+        INNER JOIN pedido as p ON p.id_cliente = c.id_cliente 
+        INNER JOIN productoxpedido as pp ON pp.id_pedido = p.id_pedido
+        INNER JOIN tblproduct AS tp ON tp.code = pp.id_producto
+        WHERE c.email like '".$_SESSION["email"][0]."'";
+        $resultsd1 = mysqli_query($link, $sql); 
+        while ($row = mysqli_fetch_assoc($resultsd1)){
+          echo $row['total'];
+          echo $row['id_producto'];
+          echo $row['name'];
+          echo $row['cantidad'];
+        }
+      ?>
+      
+    </div>
     </div>
     
 

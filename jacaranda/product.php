@@ -1,5 +1,6 @@
 <?php
-session_start();
+$id = $_GET['product'];
+session_start();    
 require_once("dbcontroller.php");
 include("database_connection.php");
 $db_handle = new DBController();
@@ -91,7 +92,7 @@ switch($_GET["action"]) {
                         </a>
                     </li>
 
-                    <li class="nav-item nologo">
+                    <li class="nav-item nologo" data-toggle="modal" data-target="#modalContacto">
                         <a class="nav-link " href="#">
                             Contacto
                         </a>
@@ -237,7 +238,137 @@ switch($_GET["action"]) {
                 </div> 
         </div>
 </div>
+ <!-- Modal Contacto-->
+ <div class="modal fade" id="modalContacto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
+<div class="modal-dialog modal-lg">
+
+    <div class="modal-content modalContacto">
+       <h2 class="contactoTitulo"> Gracias por ponerte en contacto con nosotros!!</h2>
+    <form action="" method="post" role="form">
+
+        <div class="form-group ">
+            <h3>Email</h3>
+            <input type="email" name="email" placeholder="Dejanos un correo para ponernos en contacto" class="form-control" required>
+            <span class="help-block"></span>
+        </div>    
+
+        <div class="form-group">
+            <h3>Asunto</h3>
+            <input type="text" name="asunto" id="asunto"  class="form-control" required>
+            <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+            <h3>Mensaje</h3>
+            <textarea class="formMensajeContacto" name="mensaje" rows="3" placeholder="En que te podemos ayudar?" cols="91" required></textarea>
+            
+            <span class="help-block "></span>
+        </div>
+            
+            <input type="submit" class="btn btn-primary" value="Contacto" name="Contacto">
+
+    </form>
+        
+    </div> 
+
+</div>
+
+</div>
+
+<?php 
+   $query = "
+   SELECT * FROM tblproduct WHERE 1 AND code = '".$id."'
+   ";
+   $statement = $connect->prepare($query);
+   $statement->execute();
+   $result = $statement->fetchAll();
+   $numResultados = $statement->rowCount();
+  if ($numResultados == 0){
+      echo("No se encontraron resutlados para ese codigo de producto :( ");
+
+  }
+  else{
+    foreach($result as $row){
+        $selector = "";
+        if ($row['XL'] > 0) {
+            $XL = $row['XL'];
+            $selector = $selector . "<option value='XL'>XL($XL)</option>";
+           
+        }
+        if ($row['L'] > 0) {
+            $L = $row['L'];
+            $selector = $selector . "<option value='L'>L($L)</option>";
+            
+        }
+        if ($row['M'] > 0) {
+            $M = $row['M'];
+            $selector = $selector . "<option value='M'>M($M)</option>";
+            
+        }
+        if ($row['S'] > 0) {
+            $S = $row['S'];
+            $selector = $selector . "<option value='S'>S($S)</option>";
+           
+        }
+        
+        $output = '
+                                        
+                                    <div class="row justify-content-md-center ">
+                                        <div class="col-4 producto">
+                                                
+                                            <div class="">
+                                                
+                                                        
+                                                            <img class="productImg" src="'. $row['image'] .'" alt="Card image cap">
+                                                            
+                                            </div>
+                                                                        
+                                        </div>
+                                        <div class="col-3 producto productDesc">
+                                        <div class=" align-items-center">
+                                                        <form method="post" action="index.php?action=add&code='. $row['code'] .'">    
+                                                                <h4 class="card-title"><a href="product.php?product='. $row['code'] .'" title="View Product">'. $row['name'] .'</a></h4>
+                                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+                                                                        <div class="row botonesProducto">
+                                                                                <div class="col">
+                                                                                <p class="btn btn-danger btn-block">'. $row['price'] .'</p>
+                                                                                </div>
+                                                                            
+                                                                                <div class="col">
+                                                                                <input type="text" class="product-quantity" name="quantity" value="1" size="2" />
+                                                                                <select name="talle" required>
+                                                                                
+                                                                                '.$selector.'
+
+                                                                                </select>
+                                                                                    
+                                                                                </div>
+                                                                                <div class="col">
+                                                                                
+                                                                                <input type="submit" value="Añadir al carro" class="btn btn-success btn-block btnAddAction"onClick="agregado()">
+                                                                                <script>
+                                                                                function agregado(){
+                                                                                alert("Agregado al carro");
+                                                                                }
+                                                                                </script>
+                                                                                
+                                                                        
+                                                                                </div>
+                                                                            
+                                                                    
+                                                                        </div>
+                                                            </div>
+                                                    
+                                                        </form>
+                                        </div>
+                                    </div>
+                                        ';
+                        echo $output;
+    }
+
+  }
+?>
 
 </body>
 

@@ -8,11 +8,22 @@
   color:  white;
   margin: 40% 0 2% 0;
 }
+.secciones:hover{
+  text-decoration: underline white;
+  cursor: pointer;
+  transform:translateY(-15px) ;
+  box-shadow: 0 12px 16px rgba(0,0,0,0.9);
+  
+}
 .secciones{
   margin: 25px 0px;
 }
+.botonesProducto{
+  margin-top: 75%;
+}
 .remeras{
   background-image:url('images/secciones/remeras.jpg');
+  
 }
 .pantalones{
   background-image:url('images/secciones/remeras.jpg');
@@ -31,6 +42,17 @@
 .cart-item-image{
  max-width: 150px;
 }
+
+.productDesc{
+  padding-left: 0;
+}
+.producto{
+  background-color: white;
+  padding: 2%;
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
 .card-header{
   background-color: #7c4789;
 }
@@ -44,7 +66,10 @@
 .card-title{
   margin-top:5px;
 }
-
+.productImg{
+  min-width: 80%;
+  max-height: 500px;
+}
 .ubicacion{
   background-color: #ccf0c3;
   width: 1000px;
