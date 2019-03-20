@@ -6,7 +6,7 @@ require_once("dbcontroller.php");
 include("database_connection.php");
 $db_handle = new DBController();
 $categoria = "";
-
+$_SESSION['PrendasxPag'] = 2;
 if(isset($_GET['page'])){
     $page = $_GET['page'];
 }
@@ -17,7 +17,7 @@ if($page == "" || $page == 1){
     $_SESSION["page_1"] = 0;
 } 
 else{
-    $_SESSION["page_1"] = ($page * 2) - 2 ;
+    $_SESSION["page_1"] = ($page * $_SESSION['PrendasxPag']) - $_SESSION['PrendasxPag'] ;
 }
 
 if(isset($_POST['Contacto'])){
@@ -31,6 +31,15 @@ if(isset($_POST['Contacto'])){
 if(isset($_GET['redireccion'])){
     $filtro = $_GET['redireccion'];
 }
+
+if(isset($_POST["busqueda"])){
+ 
+ $searchVal = trim($_POST["search-data"]);
+ $dao = new DAO();
+ echo $dao->searchData($searchVal);
+}
+
+
 
 if(!empty($_GET["action"])) {
 switch($_GET["action"]) {
@@ -84,6 +93,7 @@ switch($_GET["action"]) {
 }
 ?>
 
+
 <html lang="en">
 <head>
             <meta http-equiv="Expires" content="0">
@@ -104,6 +114,38 @@ switch($_GET["action"]) {
             <link rel="stylesheet" href="main.css">
             <script src="cart.js"></script>
             <style> #cart{ display:none; }</style>
+            <script>
+                $(document).ready(function() {
+                    $('#busqueda').unbind().keyup(function(e) {
+                    var value = $(this).val();
+                    if (value.length>3) {
+                        //alert(99933);
+                        searchData(value);
+                    }
+                    else {
+                        $('#search-result-container').hide();
+                    }
+                    }
+                                                    );
+                }
+                                );
+                function searchData(val){
+                    $.post('barraBusqueda.php',{
+                    'busqueda': val}
+                        , function(data){
+                    if(data != "")
+                        $('#resultadosBusqueda').html(data);
+                    else    
+                        $('#resultadosBusqueda').html("<div class='search-result'>No Result Found...</div>");
+                    }
+                        ).fail(function(xhr, ajaxOptions, thrownError) {
+                    //any errors?
+                    alert(thrownError);
+                    //alert with HTTP error
+                    }
+                                );
+                }
+            </script>
 </head>
 <body>
                     <!--NavBar -->
@@ -140,11 +182,11 @@ switch($_GET["action"]) {
                     </li>
                               
                     <div id="container icono">
-                        <form role="search" method="get" id="searchform" action="">
-                            <label for="s">
+                        <form id="searchform" >
+                            <label for="busqueda">
                                 <i class="fas fa-search"></i>
                             </label>
-                            <input type="text" value="" placeholder="search" class="" id="s" />
+                            <input type="text" value="" placeholder="search" class="s" id="busqueda" name="busqueda" />
                         </form>
                     </div>
 

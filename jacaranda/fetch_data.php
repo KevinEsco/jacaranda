@@ -9,7 +9,7 @@ if(isset($_POST["action"]))
            
         
              session_start();
-             $PrendasPorPagina = 5;
+             $PrendasPorPagina = $_SESSION['PrendasxPag'];
             $query = "
             SELECT * FROM tblproduct WHERE 1 
             ";
@@ -91,6 +91,7 @@ if(isset($_POST["action"]))
                 LIMIT $page_1, $PrendasPorPagina 
                 ";
             }
+
 
 
             $statement = $connect->prepare($query);

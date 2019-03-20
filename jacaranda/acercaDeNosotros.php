@@ -246,25 +246,21 @@ switch($_GET["action"]) {
 
   <!-- Footer Elements -->
                     <div class="container">
-                      <div class="divNewsletter">
-                          <form action="">
-                              <h3 class="tituloNewsletter">Suscribite a nuestro newsletter para no perderte las novedades y recibir descuentos especiales TOTALMENTE GRATIS!!</h3>
-                              <input type="text" class="inputNewsletter form-control" placeholder="e-mail">
-                              <input type="submit" class="btn btn-primary" value="Ingresar">
-
-                          </form>
-                      </div>
-
-
+                     
                       <!-- Social buttons -->
+                      <div class="encontranosFooter">
+                              <h3>Seguinos en nuestras redes sociales:</h3>
+                          </div>  
                       <ul class="list-unstyled list-inline text-center">
                           <li class="list-inline-item">
-                            <a href="https://www.facebook.com/Jacarand%C3%A1-Tienda-de-sue%C3%B1os-382284355536897/" class="btn-floating btn-fb mx-1">
+                            <a href="https://www.facebook.com/Jacarand%C3%A1-Tienda-de-sue%C3%B1os-382284355536897/"  target="_blank" class="btn-floating btn-fb mx-2">
                               <i class="fab fa-facebook-square"> </i>
                             </a>
                           </li>
+                          
                           <li class="list-inline-item">
-                            <a href="https://www.instagram.com/jacaranda_tienda/"class="btn-floating btn-li mx-1">
+                         
+                            <a href="https://www.instagram.com/jacaranda_tienda/"class="btn-floating btn-li mx-2"  target="_blank">
                               <i class="fab fa-instagram"> </i>
                             </a>
                           </li>

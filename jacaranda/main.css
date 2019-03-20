@@ -224,7 +224,7 @@ table#cart tfoot td .btn{display:block;}
   background: white;
   margin: 18px 15px;
 }
-#s {
+#busqueda {
   transition: all 0.2s ease-out;
   width: 1px;
   border-radius: 0;
@@ -236,7 +236,7 @@ table#cart tfoot td .btn{display:block;}
   background-color: transparent;
   opacity: 0;
 }
-#s:focus {
+#busqueda:focus {
   width: 8em;
   opacity: 1;
 }
